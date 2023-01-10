@@ -1,7 +1,15 @@
 const Footer = () => {
   return (
     <>
-      <h4 style={{ backgroundColor: "red" }}>Footer Section</h4>
+      <h4
+        style={{
+          backgroundColor: "Yellow",
+          padding: "20px 30px",
+          textAlign: "center",
+        }}
+      >
+        Welcome Everyone
+      </h4>
     </>
   );
 };
