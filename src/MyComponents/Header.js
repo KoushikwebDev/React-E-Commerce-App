@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const HeaderComponent = () => {
   const [title, setTitle] = useState("Food Villa");
@@ -7,36 +8,49 @@ const HeaderComponent = () => {
   console.log("re-redered");
   const changeTitle = () => {
     if (isChanged) {
-      setTitle("New Title");
       setIsChanged(false);
+      setTitle("New Title");
     } else {
+      setIsChanged(true);
+
       setTitle("Food Villa");
     }
   };
   return (
-    <div className="header">
-      <h1>{title}</h1>
-      <div className="nav-items">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
+    <Wrapper>
+      <div className="header">
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <div className="nav-items">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
 
-          <li>
-            <Link to="/about/profile">Profile</Link>
-          </li>
-          <li>Cart</li>
-          <li onClick={changeTitle}>Click</li>
-        </ul>
+            <li>
+              <Link to="/about/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/instamart">Instamart</Link>
+            </li>
+            <li>Cart</li>
+            <li onClick={changeTitle}>Click</li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  .nav-items ul li {
+    cursor: pointer;
+  }
+`;
 
 export default HeaderComponent;
