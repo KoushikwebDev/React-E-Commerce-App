@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Body from "./src/MyComponents/Body";
 import { Footer } from "./src/MyComponents/Footer";
@@ -10,17 +10,26 @@ import Contact from "./src/MyComponents/Contact";
 import ResturantMenu from "./src/MyComponents/ResturantMenu";
 import Profile from "./src/MyComponents/Profile";
 import Shimmer from "./src/MyComponents/Shimmer";
+import UserContext from "./src/MyComponents/Utils/UserContext";
 
 // lazy Loading ❤❤❤💛
 const Instamart = lazy(() => import("./src/MyComponents/Instamart"));
 const About = lazy(() => import("./src/MyComponents/About"));
 
 const AppLayOut = () => {
+  const [userInfo, setUserInfo] = useState({
+    user: {
+      name: "Koushik",
+      skills: "JavaScript,React",
+    },
+  });
   return (
     <React.Fragment>
-      <HeaderComponent />
-      <Outlet />
-      <Footer />
+      <UserContext.Provider value={{ userInfo, setUserInfo }}>
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </React.Fragment>
   );
 };

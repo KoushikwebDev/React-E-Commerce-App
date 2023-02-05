@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import UserContext from "./Utils/UserContext";
 
 const HeaderComponent = () => {
+  const { userInfo } = useContext(UserContext);
+  const value = useContext(UserContext);
+  console.log(value);
   const [title, setTitle] = useState("Food Villa");
   const [isChanged, setIsChanged] = useState(true);
   console.log("re-redered");
@@ -39,6 +43,7 @@ const HeaderComponent = () => {
               <Link to="/instamart">Instamart</Link>
             </li>
             <li>Cart</li>
+            <li>{userInfo.user.name}</li>
             <li onClick={changeTitle}>Click</li>
           </ul>
         </div>

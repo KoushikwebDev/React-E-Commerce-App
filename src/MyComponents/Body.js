@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ResturentCard from "./ResturentCard.js";
 import Shimmer from "./Shimmer.js";
 import useOnline from "./Utils/useOnline.js";
+import UserContext from "./Utils/UserContext.js";
 
 const Body = () => {
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const [data, setData] = useState(null);
   const [searchText, setSearchText] = useState("");
 
@@ -80,6 +82,45 @@ const Body = () => {
         >
           Search
         </button>
+
+        <input
+          type="text"
+          value={userInfo.user.name}
+          onChange={(e) => {
+            setUserInfo({
+              user: {
+                ...userInfo.user,
+                name: e.target.value,
+              },
+            });
+          }}
+          style={{
+            display: "inline-block",
+            margin: "20px 20px",
+            padding: "3px 5px",
+          }}
+          className="border-2"
+        />
+
+        <input
+          type="text"
+          value={userInfo.user.skills}
+          onChange={(e) => {
+            setUserInfo({
+              user: {
+                ...userInfo.user,
+
+                skills: e.target.value,
+              },
+            });
+          }}
+          style={{
+            display: "inline-block",
+            margin: "20px 20px",
+            padding: "3px 5px",
+          }}
+          className="border-2"
+        />
       </div>
       <div className="card-section">
         {data ? (

@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import UserContext from "./Utils/UserContext";
+
 const ResturentCard = ({
   name,
   cuisines,
   cloudinaryImageId,
   lastMileTravelString,
 }) => {
+  const { userInfo } = useContext(UserContext);
   //   console.log(props.data.name);
   return (
     <div className="card">
@@ -16,7 +20,8 @@ const ResturentCard = ({
       />
       <h2>{name}</h2>
       <h3 style={{ width: "200px" }}>{cuisines.join(", ")}</h3>
-      <h4>{lastMileTravelString} minutes</h4>
+      <h4>{lastMileTravelString}</h4>
+      <h4>{userInfo.user.skills}</h4>
     </div>
   );
 };
