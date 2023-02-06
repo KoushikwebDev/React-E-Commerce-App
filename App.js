@@ -11,6 +11,9 @@ import ResturantMenu from "./src/MyComponents/ResturantMenu";
 import Profile from "./src/MyComponents/Profile";
 import Shimmer from "./src/MyComponents/Shimmer";
 import UserContext from "./src/MyComponents/Utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./src/MyComponents/Utils/store";
+import Cart from "./src/MyComponents/Cart";
 
 // lazy Loading ❤❤❤💛
 const Instamart = lazy(() => import("./src/MyComponents/Instamart"));
@@ -24,13 +27,15 @@ const AppLayOut = () => {
     },
   });
   return (
-    <React.Fragment>
-      <UserContext.Provider value={{ userInfo, setUserInfo }}>
-        <HeaderComponent />
-        <Outlet />
-        <Footer />
-      </UserContext.Provider>
-    </React.Fragment>
+    <Provider store={store}>
+      <React.Fragment>
+        <UserContext.Provider value={{ userInfo, setUserInfo }}>
+          <HeaderComponent />
+          <Outlet />
+          <Footer />
+        </UserContext.Provider>
+      </React.Fragment>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
@@ -77,6 +82,11 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+        errorElement: <Errorpage />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
         errorElement: <Errorpage />,
       },
     ],

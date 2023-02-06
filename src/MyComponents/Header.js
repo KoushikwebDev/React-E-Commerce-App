@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "./Utils/UserContext";
@@ -20,6 +21,12 @@ const HeaderComponent = () => {
       setTitle("Food Villa");
     }
   };
+
+  // useSelector
+  const cartItems = useSelector((store) => {
+    return store.cart.items;
+  });
+  console.log(cartItems);
   return (
     <Wrapper>
       <div className="header">
@@ -42,7 +49,9 @@ const HeaderComponent = () => {
             <li>
               <Link to="/instamart">Instamart</Link>
             </li>
-            <li>Cart</li>
+            <Link to="/cart">
+              <li>Cart- {cartItems.length} items</li>
+            </Link>
             <li>{userInfo.user.name}</li>
             <li onClick={changeTitle}>Click</li>
           </ul>
