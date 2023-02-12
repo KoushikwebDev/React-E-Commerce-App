@@ -5,7 +5,7 @@ import styled from "styled-components";
 import UserContext from "./Utils/UserContext";
 
 const HeaderComponent = () => {
-  const { userInfo } = useContext(UserContext);
+  // const { userInfo } = useContext(UserContext);
   const value = useContext(UserContext);
   console.log(value);
   const [title, setTitle] = useState("Food Villa");
@@ -30,7 +30,9 @@ const HeaderComponent = () => {
   return (
     <Wrapper>
       <div className="header">
-        <h1 className="text-2xl font-bold">{title}</h1>
+        <h1 data-testid="title" id="hello" className="text-2xl font-bold">
+          {title}
+        </h1>
         <div className="nav-items">
           <ul>
             <li>
@@ -50,9 +52,9 @@ const HeaderComponent = () => {
               <Link to="/instamart">Instamart</Link>
             </li>
             <Link to="/cart">
-              <li>Cart- {cartItems.length} items</li>
+              <li data-testid="cart">Cart- {cartItems.length} items</li>
             </Link>
-            <li>{userInfo.user.name}</li>
+            {/* <li>{userInfo.user.name}</li> */}
             <li onClick={changeTitle}>Click</li>
           </ul>
         </div>
