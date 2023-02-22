@@ -34,6 +34,7 @@ function Cart() {
               <h2>{item.description}</h2>
               <span>Price: {item.price / 100}</span>
               <span>InStock: {item.inStock}</span>
+              <hr />
             </div>
           </div>
         );
